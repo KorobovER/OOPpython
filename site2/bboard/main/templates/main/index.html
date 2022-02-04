@@ -1,0 +1,24 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+
+<div class="content">
+    <div class="title">
+        <h1>Последние выполненные заказы</h1>
+    </div>
+    <div> В работе: {{ count }} </div>
+    {% for post in posts %}
+    <div class="adds">
+        <div class="text">
+            <div class="name">{{post.title}}</div>
+            <div class="time">{{post.date_pub}}</div>
+            <div class="condition">Статус:<p>Выполнено!</p></div>
+            <div class="category">Категория: <p>Простой дизайн</p></div>
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+

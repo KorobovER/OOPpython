@@ -1,0 +1,11 @@
+{% extends "layout/base.html" %}
+
+{% block title %}Создание заявки{% endblock %}
+
+{% block content %}
+    <h1>Удаление заявки</h1>
+    <form method="post">
+          {% csrf_token %}
+        <p><input type="submit" value="Удалить"></p>
+    </form>
+{% endblock %}

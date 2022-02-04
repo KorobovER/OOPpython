@@ -1,0 +1,8 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+    <h2>Welcome {{new_user.first_name}}!</h2>
+    <a href="{% url 'main:login' %}">Login</a>
+{% endblock %}

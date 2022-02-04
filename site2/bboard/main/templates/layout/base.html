@@ -1,0 +1,50 @@
+{% load static %}
+<DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+        <title>{% block title %} Главная {% endblock %} </title>
+    </head>
+    <body>
+    {% if user.is_authenticated %}
+
+    <div class="header2">
+        <div class="nav2">
+            <a class="Hbox3" href="{% url 'main:index'  %}">Главная</a>
+            <div class="l2"><p class="logo2">Design
+                <p class="logo4">.pro</p> </p></div>
+            <div class="app">
+                <a class="Hbox4" href="{% url 'main:profile' %}">Мои заявки</a>
+                <a class="Hbox4" href="{% url 'main:profile_posts_add' %}">Оформить заявку</a>
+            </div>
+            <a class="Hbox4" href="{% url 'main:logout' %}">Выйти</a>
+
+        </div>
+    </div>
+
+
+    {% else %}
+
+    <div class="header">
+        <div class="nav">
+            <a class="Hbox1" href="{% url 'main:index'  %}">Главная</a>
+            <div class="l"><p class="logo">Design
+                <p class="logo2">.pro</p> </p></div>
+            <div class="auth">
+                <a class="Hbox2" href="{% url 'main:login' %}">Войти</a>
+                <a class="Hbox2" href="{% url 'main:register' %}">Регистрация</a>
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+
+
+    {% block content %}
+    {% endblock %}
+    </div>
+    </body>
+    </html>
+
