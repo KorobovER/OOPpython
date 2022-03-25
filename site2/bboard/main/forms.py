@@ -54,3 +54,16 @@ class PostsForm(forms.ModelForm):
         model = Posts
         fields = '__all__'
         widgets = {'author': forms.HiddenInput, 'status': forms.HiddenInput}
+
+
+class FilterForm(forms.Form):
+    CHOICES_STATUS = (
+        ("о", 'Все'),
+        ("Новый", 'Новый'),
+        ("Принято в работу", 'Принято в работу'),
+        ("Выполнено", 'Выполнено'),
+    )
+    keyword = forms.ChoiceField(choices=CHOICES_STATUS, label='Фильтр')
+
+class SearchForm(forms.Form):
+   keyword = forms.CharField(required=False, max_length=20, label='')
