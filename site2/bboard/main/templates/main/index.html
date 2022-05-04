@@ -1,4 +1,5 @@
 {% extends "layout/base.html" %}
+{% load bootstrap4 %}
 
 {% block content %}
 
@@ -6,15 +7,22 @@
     <div class="title">
         <h1>Последние выполненные заказы</h1>
     </div>
-    <div> В работе: {{ count }} </div>
-    {% for post in posts %}
-    <div class="adds">
-        <div class="text">
-            <div class="name">{{post.title}}</div>
-            <div class="time">{{post.date_pub}}</div>
-            <div class="condition">Статус:<p>Выполнено!</p></div>
-            <div class="category">Категория: <p>Простой дизайн</p></div>
+    <div> В работе: {{ count }}</div>
+    <form class="col-md-auto form-inline text-white">
 
+    </form>
+    {% for post in bb %}
+    <div class="adds">
+        <div class="pic">
+            <img src="{{MEDIA_URL}}{{ post.image.url }}">
+        </div>
+        <div class="text">
+            <div class="name"> Название: {{post.title}}</div>
+            <div class="time">Дата добавления: {{post.created_at}}</div>
+            <div class="description">Описание: {{post.description}}</div>
+            <div class="condition">Статус:<p> {{post.status}}</p></div>
+            <div class="category">Категория: <p>{{post.category}}</p></div>
+            <div> {{post.author}}</div>
         </div>
     </div>
     {% endfor %}

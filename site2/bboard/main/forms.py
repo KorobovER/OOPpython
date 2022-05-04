@@ -1,5 +1,7 @@
 from django import forms
-from .models import AdvUser, Posts
+from django.forms import inlineformset_factory
+
+from .models import AdvUser, Posts, AdditionalImage
 from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError
 from django.core.validators import FileExtensionValidator
@@ -49,11 +51,13 @@ def file_size(value):
 
 
 class PostsForm(forms.ModelForm):
-    image = forms.FileField(validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'bmp']), file_size], label='Фотография',)
+    image = forms.FileField(validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'bmp']), file_size],
+                            label='Фотография', )
     class Meta:
         model = Posts
         fields = '__all__'
         widgets = {'author': forms.HiddenInput, 'status': forms.HiddenInput}
+AIFormSet = inlineformset_factory(Posts, AdditionalImage, fields='__all__')
 
 
 class FilterForm(forms.Form):
@@ -65,5 +69,17 @@ class FilterForm(forms.Form):
     )
     keyword = forms.ChoiceField(choices=CHOICES_STATUS, label='Фильтр')
 
+
 class SearchForm(forms.Form):
-   keyword = forms.CharField(required=False, max_length=20, label='')
+    keyword = forms.CharField(required=False, max_length=20, label='')
+
+
+class BbAdminForm(forms.ModelForm):
+    def clean(self):
+       status = self.cleaned_data['status']
+       if (self.instance.status != status) and status == 'Новая':
+           raise ValidationError("Вы не можете поменять статус на новая")
+       if (self.instance.status == 'Выполнено'):
+           raise ValidationError("Вы не можете поменять статус с Выполнено")
+       if (self.instance.status == 'Принято в работу'):
+           raise ValidationError("Вы не можете поменять статус с Принято в работу")

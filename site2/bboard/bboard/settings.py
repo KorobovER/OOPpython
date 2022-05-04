@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main.apps.MainConfig',
     'django_cleanup',
+    'bootstrap4',
+    'easy_thumbnails',
 
 ]
 

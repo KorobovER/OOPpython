@@ -131,23 +131,30 @@ body {
     flex-direction: column;
     margin-top: 50px;
     background-color: #f8f8f8;
-    height: 1000px;
 }
-
+.filter{
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
+    margin-top: 15px;
+}
 .title {
     margin-top: 15px;
 }
 
 .adds {
     display: flex;
+    justify-content: center;
     margin-top: 30px;
-    width: 80%;
+    margin-bottom: 30px;
+    width: 50%;
     border: 2px solid firebrick;
     border-radius: 50px;
 }
 
 .text {
-    margin-left: 50px;
+    width: 40%;
+    margin-right: 7%;
 }
 
 .name {
@@ -158,14 +165,19 @@ body {
 .time {
     font-size: 18px;
 }
-
+.description{
+    margin-top: 15px;
+    word-break: break-all;
+    width: 100%;
+}
 .condition {
-    margin-top: 10%;
+    margin-top: 5%;
     font-size: 22px;
 }
 
 .condition > p {
-    color: green;
+    background: greenyellow;
+    width: 250px;
 }
 
 .category {
@@ -173,8 +185,194 @@ body {
     margin-top: 5%;
 }
 .pic {
+    margin-right: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 40%;
 }
+img{
+    height: 70%;
+    width: 80%;
+}
+/*Вход в профиль*/
+.login-box {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background-color: #f8f8f8;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px firebrick;
+    border-radius: 10px;
+}
+
+.login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    text-align: center;
+}
+
+.login-box .user-box {
+    position: relative;
+}
+
+.login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid firebrick;
+    outline: none;
+    background: transparent;
+}
+.login-box .user-box label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: black;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: firebrick;
+    font-size: 12px;
+}
+
+.login-box form button {
+    position: relative;
+    display: inline-block;
+    padding: 20px 30px;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    margin-top: 40px;
+    letter-spacing: 4px
+}
+
+.login-box button:hover {
+    background: firebrick;
+    color: black;
+    border-radius: 5px;
+}
+/*Регистрация*/
+.reg-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background-color: #f8f8f8;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px firebrick;
+    border-radius: 10px;
+}
+
+.reg-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    text-align: center;
+}
+
+.reg-box .user-box {
+    position: relative;
+}
+
+.reg-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid firebrick;
+    outline: none;
+    background: transparent;
+}
+.reg-box .user-box label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: black;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.reg-box .user-box input:focus ~ label,
+.reg-box .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: firebrick;
+    font-size: 12px;
+}
+
+.reg-box form button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    margin-top: 40px;
+    letter-spacing: 4px
+}
+
+.reg-box button:hover {
+    background: firebrick;
+    color: black;
+    border-radius: 5px;
+}
+/*Добавление постов*/
+.text-white{
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+}
+.block-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 30%;
+    border: 1px solid firebrick;
+    border-radius:25px ;
+}
+.button{
+    margin-top: 15px;
+}
+.logout{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2%;
+    background: #f8f8f8;
+    border: 1px solid firebrick;
+    border-radius:25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 30%;
+}
+.clear{
+    display: flex;
+    justify-content: center;
+}
+
+
+
+

@@ -3,10 +3,35 @@
 {% block title %}Регистрация{% endblock %}
 
 {% block content %}
+<div class="reg-box">
     <h2>Регистрация</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
+    <form action="." method="post">
+       {% csrf_token %}
+        <div class="user-box">
+            <input type="text" name="fio" required="">
+            <label>ФИО</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="username" required="">
+            <label>Логин</label>
+        </div>
+        <div class="user-box">
+            <input type="email" name="email" required="">
+            <label>Почта</label>
+        </div>
+        <div class="user-box">
+            <input type="password" name="password1" required="">
+            <label>Пароль</label>
+        </div>
+        <div class="user-box">
+            <input type="password" name="password2" required="">
+            <label>Повторите пароль</label>
+        </div>
+        <div>
+            <label>Обработка персональных данных</label>
+            <input type="checkbox" name="send_messages">
+        </div>
         <button type="submit">Отправить</button>
     </form>
+</div>
 {% endblock %}

@@ -10,24 +10,33 @@ class AdvUser(AbstractUser):
         pass
 
 
-def user_registrated(instance):
-    pass
+
+class Category(models.Model):
+    name = models.CharField(max_length=64, verbose_name='Название')
+
+    def __str__(self):
+        return self.name
+
+    def delete(self, *args, **kwargs):
+        for bb in self.bb_set.all():
+            bb.delete()
+        super().delete(*args, **kwargs)
+
+    class Meta:
+        verbose_name_plural = 'Категории'
+        verbose_name = 'Категория'
 
 
 class Posts(models.Model):
-    CHOICES_CATEGORY = (
-        ("3D Дизайн", '3D Дизайн'),
-        ('2D Дизайн', '2D Дизайн'),
-        ('Эскиз', 'Эскиз'),
-    )
+
     CHOICES_STATUS = (
         ("Новый", 'Новый'),
         ("Принято в работу", 'Принято в работу'),
         ("Выполнено", 'Выполнено'),
     )
     title = models.CharField(max_length=40, verbose_name='Название')
-    description = models.TextField(verbose_name='Описание')
-    category = models.TextField(verbose_name='Категория', choices=CHOICES_CATEGORY)
+    description = models.TextField(max_length=100, verbose_name='Описание')
+    category = models.ForeignKey(Category, max_length=120, on_delete=models.CASCADE, verbose_name='Категория')
     status = models.TextField(verbose_name='Статус заявки', choices=CHOICES_STATUS, default="Новый")
     image = models.ImageField(blank=True, upload_to=get_timestamp_path, verbose_name='Изображение')
     author = models.ForeignKey(AdvUser, on_delete=models.CASCADE, verbose_name='Автор объявления')
@@ -38,5 +47,22 @@ class Posts(models.Model):
         verbose_name = 'Заявка'
         ordering = ['-created_at']
 
+
+class AddCommentary(models.Model):
+    bb = models.ForeignKey(Posts, on_delete=models.CASCADE, verbose_name='Заявки')
+    comment = models.CharField(max_length=64, verbose_name='Название')
+
+    class Meta:
+        verbose_name_plural = 'Комментарий'
+        verbose_name = 'Комментарий'
+
+
+class AdditionalImage(models.Model):
+    bb = models.ForeignKey(Posts, on_delete=models.CASCADE, verbose_name='Заявки')
+    image = models.ImageField(upload_to=get_timestamp_path, verbose_name='Изображение')
+
+    class Meta:
+        verbose_name_plural = 'Дополнительные иллюстрации'
+        verbose_name = 'Дополнительная иллюстрация'
 
 

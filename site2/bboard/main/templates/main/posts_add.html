@@ -1,14 +1,16 @@
 {% extends "layout/base.html" %}
-
+{% load bootstrap4 %}
 {% load static %}
 
 {% block title %} Добавление заявки {% endblock %}
 
 {% block content %}
-    <h2 class="text-white">Добавление заявки</h2>
-        <form class="text-white" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-             <input type="submit" value="create">
-        </form>
+<h2 class="text-white">Создать заявку</h2>
+<form class="text-white" method="post" enctype="multipart/form-data">
+    <div class="block-content">
+        {% csrf_token %}
+        <div class="form-app">{% bootstrap_form form layout='horizontal' %}</div>
+        <div class="button">{% buttons submit='Добавить' %} {% endbuttons %}</div>
+    </div>
+</form>
 {% endblock %}

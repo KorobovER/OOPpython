@@ -14,10 +14,16 @@ from .forms import RegisterUserForm, PostsForm
 from django.views.generic.base import TemplateView
 from django.views.generic import DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
+from .forms import FilterForm
+from django.db.models import Q
 
 
 def index(request):
-    return render(request, 'main/index.html')
+    bbs = Posts.objects.filter(status='Выполнено').order_by('-created_at')[:4]
+    count = Posts.objects.filter(status='Принято в работу').count()
+    context = {'bb': bbs, 'count': count}
+    return render(request, 'main/index.html', context)
+
 
 def other_page(request, page):
     try:
@@ -33,8 +39,19 @@ class BBLoginView(LoginView):
 
 @login_required
 def profile(request):
-    posts = Posts.objects.filter(author=request.user.pk)
-    context = {'posts': posts}
+    post_all = Posts.objects.all()
+    if request.user.is_staff:
+        posts = Posts.objects.filter()
+    else:
+        posts = Posts.objects.filter(author=request.user.pk)
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        q = Q(status__icontains=keyword)
+        posts = posts.filter(q)
+    else:
+        keyword = ''
+    form = FilterForm(initial={'keyword': keyword})
+    context = {'posts': posts, 'form': form}
     return render(request, 'main/profile.html', context)
 
 
