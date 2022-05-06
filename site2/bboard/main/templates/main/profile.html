@@ -23,6 +23,9 @@
             <div class="time">Дата добавления: {{post.created_at}}</div>
             <div class="description">Описание: {{post.description}}</div>
             <div class="condition">Статус:<p> {{post.status}}</p></div>
+            {% if post.cancellation %}
+            <div class="description">Причина отмены:{{ post.cancellation }}</div>
+            {% endif %}
             <div class="category">Категория: <p>{{post.category}}</p></div>
             <div> {{post.author}}</div>
             <div><a href="{% url 'main:profile_posts_delete' post.id %}">Удалить</a></div>

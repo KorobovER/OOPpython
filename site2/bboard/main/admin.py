@@ -16,8 +16,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class PostsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'category', 'status', 'author', 'image', 'created_at')
-    fields = (('author'), 'title', 'description', 'category', 'status', 'image')
+    list_display = ('title', 'description', 'category', 'status','cancellation','author', 'image', 'created_at')
+    fields = (('author'), 'title', 'description', 'category', 'status','cancellation', 'image')
     inlines = (AdditionalImageInline, AddCommentaryComInLine)
     list_filter = ('status', 'category')
     form = BbAdminForm

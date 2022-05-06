@@ -66,6 +66,7 @@ class FilterForm(forms.Form):
         ("Новый", 'Новый'),
         ("Принято в работу", 'Принято в работу'),
         ("Выполнено", 'Выполнено'),
+        ("Отменено", 'Отменено'),
     )
     keyword = forms.ChoiceField(choices=CHOICES_STATUS, label='Фильтр')
 
@@ -83,3 +84,6 @@ class BbAdminForm(forms.ModelForm):
            raise ValidationError("Вы не можете поменять статус с Выполнено")
        if (self.instance.status == 'Принято в работу'):
            raise ValidationError("Вы не можете поменять статус с Принято в работу")
+       if (self.instance.status == 'Отменено'):
+           raise ValidationError("Вы не можете поменять статус с отменено")
+
